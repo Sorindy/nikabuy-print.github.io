@@ -1,98 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Print</title>
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif,Impact;
-        }
-        @font-face {
-            font-family: Impact;
-            src: url(impactreg.woff);
-        }
-        /* Height 157.8px, Width 256px */
-        .container {
-            text-align: center;
-            width: 255px;
-            margin: 0;
-            border: 1px solid;
-            border-radius: 1em;
-            padding: 0.125em;
-            padding-bottom: 0;
-
-            position: fixed;
-            left: 49%;
-            bottom: 0.25em;
-            transform: translate(-50%, 0%);
-        }
-
-        .customerCode {
-            font-size: 3.5em;
-            font-weight: 600;
-            font-family: Impact;
-            border-bottom: 2px solid;
-            margin-bottom: 0.1em;
-            text-align: left;
-            padding: 0 5px;
-            /* letter-spacing: 0.04em; */
-        }
-
-        .boxNumber {
-            font-size: 1.825em;
-            text-align: center;
-            font-family: Arial;
-        }
-        @page{
-            margin-left: 0px;
-            margin-right: 0px;
-            margin-top: 0px;
-            margin-bottom: 0px;
-            height: 4.45;
-            width: 7.36cm;
-        }
-        @media print {
-            .container {
-                page-break-after: always;         
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Print</title>
+        <style>
+            body {
+                font-family: Arial, Helvetica, sans-serif, Impact;
             }
-        }
-    </style>
-    <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
-</head>
+            @font-face {
+                font-family: Impact;
+                src: url(impactreg.woff);
+            }
+            /* Height 157.8px, Width 256px */
+            .container {
+                text-align: center;
+                width: 255px;
+                margin: 0;
+                padding: 0.125em;
+                padding-bottom: 0;
 
-<body>
-    
-</body>
-<footer>
-    <div class="container">
-        <div class="customerCode"><span id="customerCode">AA438</span></div>
-        <div class="boxNumber">
-            <svg id="barcode"></svg>
-            <!-- <img alt="box barcode"
+                position: fixed;
+                left: 48%;
+                bottom: 0.065em;
+                transform: translate(-50%, 0%);
+            }
+
+            .customerCode {
+                font-size: 3.5em;
+                font-weight: 600;
+                font-family: Impact;
+                border-bottom: 2px solid;
+                margin-bottom: 0.1em;
+                text-align: left;
+                padding: 0 5px;
+                /* letter-spacing: 0.04em; */
+            }
+
+            .boxNumber {
+                font-size: 1.825em;
+                text-align: center;
+                font-family: Arial;
+            }
+            @page {
+                margin-left: 0px;
+                margin-right: 0px;
+                margin-top: 0px;
+                margin-bottom: 0px;
+            }
+            @media print {
+                .container {
+                    page-break-after: always;
+                }
+            }
+        </style>
+        <script
+            type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"
+        ></script>
+    </head>
+
+    <body></body>
+    <footer>
+        <div class="container">
+            <div class="customerCode"><span id="customerCode">AA438</span></div>
+            <div class="boxNumber">
+                <svg id="barcode"></svg>
+                <!-- <img alt="box barcode"
                 src="https://barcode.tec-it.com/barcode.ashx?data=2209090001&code=Code25IL&unit=Fit&modulewidth=1" /> -->
-            <!-- <div>2209090001</div> -->
+                <!-- <div>2209090001</div> -->
+            </div>
         </div>
-    </div>
-    <script type="text/javascript">
-        const params = new Proxy(new URLSearchParams(window.location.search), {
-            get: (searchParams, prop) => searchParams.get(prop),
-        });
+        <script type="text/javascript">
+            const params = new Proxy(new URLSearchParams(window.location.search), {
+                get: (searchParams, prop) => searchParams.get(prop)
+            });
 
-        let boxNumber = params.boxNumber;
-        let customerCode = params.customerCode;
+            let boxNumber = params.boxNumber;
+            let customerCode = params.customerCode;
 
-        document.getElementById("customerCode").innerHTML = customerCode;
-        
-        JsBarcode("#barcode", boxNumber, {
-            width:2.2,
-            height:30,
-            fontSize: 25
-        });
+            document.getElementById('customerCode').innerHTML = customerCode;
 
-        window.print();
-    </script>
-</footer>
+            JsBarcode('#barcode', boxNumber, {
+                width: 2.2,
+                height: 30,
+                fontSize: 25
+            });
+
+            window.print();
+        </script>
+    </footer>
 </html>
